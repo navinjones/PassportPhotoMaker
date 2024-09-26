@@ -232,3 +232,6 @@ if __name__ == "__main__":
                                 st.warning("No face detected in the uploaded image.")
                     else:
                         st.warning("Please upload or select at least one image.")
+
+if __name__ == "__main__":
+    main()
