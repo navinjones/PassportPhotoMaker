@@ -8,22 +8,16 @@ import os
 import io
 from PIL import Image
 import numpy as np
+from mtcnn import MTCNN
 
 # Try to import optional dependencies
 REMBG_AVAILABLE = False
-MTCNN_AVAILABLE = False
 
 try:
     from rembg import remove
     REMBG_AVAILABLE = True
 except ImportError:
     st.warning("rembg library is not available. Background removal will be limited.")
-
-try:
-    from mtcnn import MTCNN
-    MTCNN_AVAILABLE = True
-except ImportError:
-    st.warning("mtcnn library is not available. Face detection will be limited.")
 
 err_msg = None
 
