@@ -1,19 +1,29 @@
 import streamlit as st
-from PIL import Image
+
+# Set page config first
+st.set_page_config(layout="wide")
+
+# Now import other libraries
 import os
-import numpy as np
 import io
+from PIL import Image
+import numpy as np
 
 # Try to import optional dependencies
+REMBG_AVAILABLE = False
+MTCNN_AVAILABLE = False
+
 try:
     from rembg import remove
-    from mtcnn import MTCNN
     REMBG_AVAILABLE = True
+except ImportError:
+    st.warning("rembg library is not available. Background removal will be limited.")
+
+try:
+    from mtcnn import MTCNN
     MTCNN_AVAILABLE = True
 except ImportError:
-    REMBG_AVAILABLE = False
-    MTCNN_AVAILABLE = False
-    st.warning("Some features are not available due to missing libraries. Background removal and face detection might be limited.")
+    st.warning("mtcnn library is not available. Face detection will be limited.")
 
 err_msg = None
 
@@ -196,9 +206,7 @@ def display_bg(image):
     except Exception as e:
         st.error(f"Error opening image: {e}")
 
-if __name__ == "__main__":
-    st.set_page_config(layout="wide")
-
+def main():
     st.markdown("<h1 style='text-align: center;'>Passport size filter</h1>", unsafe_allow_html=True)
 
     if 'text_input_key' not in st.session_state:
@@ -286,3 +294,6 @@ if __name__ == "__main__":
                         st.warning("Please upload or select at least one image.")
             if search_option == 'Try With Existing Photos':
                 display_bg(bg_color)
+
+if __name__ == "__main__":
+    main()
