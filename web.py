@@ -189,7 +189,7 @@ if __name__ == "__main__":
                 "Input image",
                 type=['jpeg', 'jpg', 'png'],
                 accept_multiple_files=False,
-                help="Limit: 20MB per file",
+                help="Limit: 2MB per file",
                 key=st.session_state['text_input_key']
             )
             st.subheader("select background color")
