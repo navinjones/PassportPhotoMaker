@@ -179,14 +179,18 @@ if __name__ == "__main__":
             text-align: center;
             position: relative;
         }
-        .popup-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 18px;
-            font-weight: bold;
+        .popup-close-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
             cursor: pointer;
-            color: #333;
+            margin-top: 20px;
+        }
+        .popup-close-btn:hover {
+            background-color: #0056b3;
         }
         </style>
         <script>
@@ -197,7 +201,6 @@ if __name__ == "__main__":
         </script>
         <div id="popup-overlay" class="popup-overlay">
             <div class="popup-content">
-                <span class="popup-close" onclick="closePopup()">X</span>
                 <h2>Welcome to Passport Photo Maker</h2>
                 <p>
                     This tool helps you create passport-sized photos with customized backgrounds. 
@@ -209,6 +212,7 @@ if __name__ == "__main__":
                     <li>Click "Submit" to process the photo.</li>
                 </ul>
                 <p>Close this popup to start using the application.</p>
+                <button class="popup-close-btn" onclick="closePopup()">Close</button>
             </div>
         </div>
     """, unsafe_allow_html=True)
