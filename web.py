@@ -156,75 +156,6 @@ def load_images(image_directory):
 if __name__ == "__main__":
     st.set_page_config(layout="wide")
 
-    # Inject custom CSS and JavaScript for the popup
-    st.markdown("""
-        <style>
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Dark translucent background */
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .popup-content {
-            background-color: #f8f9fa; /* Light gray background for better visibility */
-            color: #333; /* Dark text color */
-            padding: 20px;
-            border-radius: 10px;
-            width: 50%;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-        .popup-close-btn {
-            background-color: #007bff; /* Blue button */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .popup-close-btn:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
-        </style>
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const closeButton = document.getElementById('close-button');
-            if (closeButton) {
-                closeButton.addEventListener('click', function() {
-                    const popup = document.getElementById('popup-overlay');
-                    if (popup) popup.style.display = 'none';
-                });
-            }
-        });
-        </script>
-        <div id="popup-overlay" class="popup-overlay">
-            <div class="popup-content">
-                <h2>Welcome to Passport Photo Maker</h2>
-                <p>
-                    This tool helps you create passport-sized photos with customized backgrounds. 
-                    Follow these steps to get started:
-                </p>
-                <ul style="text-align: left;">
-                    <li>Upload an image or select from preloaded options.</li>
-                    <li>Choose your desired background color or image.</li>
-                    <li>Click "Submit" to process the photo.</li>
-                </ul>
-                <p>Click the button below to start using the application.</p>
-                <button id="close-button" class="popup-close-btn">Close</button>
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
-
-    # Rest of your Streamlit application code
     st.markdown("<h1 style='text-align: center;'>Passport Photo Maker</h1>", unsafe_allow_html=True)
 
     if 'text_input_key' not in st.session_state:
@@ -253,7 +184,7 @@ if __name__ == "__main__":
         output_image_path = 'output.jpg'
 
         if search_option == 'Upload':
-            st.subheader("Select Input Image")
+            st.subheader("select input image")
             image = st.file_uploader(
                 "Input image",
                 type=['jpeg', 'jpg', 'png'],
@@ -265,16 +196,16 @@ if __name__ == "__main__":
             bg_color = st.color_picker("Choose background color", "#ffffff", key=st.session_state['color_wheel'])
 
         elif search_option == 'No_Photo?':
-            image = st.selectbox("**Select Input Image:**", image_files)
-            bg_color = st.selectbox('**Select Background Image:**', back_files)
+            image = st.selectbox("**select Input Image:**", image_files)
+            bg_color = st.selectbox('**Select image:**', back_files)
 
         col3, col4 = st.columns([5, 1])
         is_submit = False
         with col3:
-            if st.button('Clear'):
+            if st.button('clear'):
                 clear_fields()
         with col4:
-            if st.button("Submit"):
+            if st.button("submit"):
                 is_submit = True
                 if is_submit:
                     if image:
