@@ -73,7 +73,7 @@ def resize_and_center_image(img, target_size):
 
     resized_img = img.resize((new_width, new_height), Image.LANCZOS)
 
-    new_img = Image.new('RGBA', target_size, (0, 0, 0, 0))  # Corrected
+    new_img = Image.new('RGBA', target_size, (0, 0, 0, 0))
     paste_x = (target_size[0] - new_width) // 2
     paste_y = (target_size[1] - new_height) // 2
     new_img.paste(resized_img, (paste_x, paste_y), resized_img)
@@ -81,9 +81,8 @@ def resize_and_center_image(img, target_size):
     return new_img
 
 
-
 def add_background(foreground, background_color, target_size):
-    background = Image.New('RGB', target_size, color=background_color)
+    background = Image.new('RGB', target_size, color=background_color)
     background.paste(foreground, (0, 0), foreground)
     return background
 
@@ -181,11 +180,11 @@ if __name__ == "__main__":
 
     with col1:
         st.header("Select Mode")
-        search_option = st.radio("", ('New', 'Existing'), horizontal=True, key=st.session_state['text_box'])
+        search_option = st.radio("", ('Upload', 'No_Photo?'), horizontal=True, key=st.session_state['text_box'])
         output_image_path = 'output.jpg'
 
-        if search_option == 'New':
-            st.subheader("Select Input Image")
+        if search_option == 'Upload':
+            st.subheader("select input image")
             image = st.file_uploader(
                 "Input image",
                 type=['jpeg', 'jpg', 'png'],
@@ -196,9 +195,9 @@ if __name__ == "__main__":
             st.subheader("Choose Background Color")
             bg_color = st.color_picker("Choose background color", "#ffffff", key=st.session_state['color_wheel'])
 
-        elif search_option == 'Existing':
-            image = st.selectbox("**select input image:**", image_files)
-            bg_color = st.selectbox('**select image:**', back_files)
+        elif search_option == 'No_Photo?':
+            image = st.selectbox("**select Input Image:**", image_files)
+            bg_color = st.selectbox('**Select image:**', back_files)
 
         col3, col4 = st.columns([5, 1])
         is_submit = False
