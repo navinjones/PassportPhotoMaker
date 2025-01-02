@@ -184,9 +184,9 @@ if __name__ == "__main__":
         output_image_path = 'output.jpg'
 
         if search_option == 'Upload_Your_Photo':
-            st.subheader("select input image")
+            st.subheader("Select Input Image")
             image = st.file_uploader(
-                "Input image",
+                "",
                 type=['jpeg', 'jpg', 'png'],
                 accept_multiple_files=False,
                 help="Limit: 2MB per file",
