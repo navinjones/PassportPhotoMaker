@@ -65,24 +65,24 @@ def resize_and_center_image(img, target_size):
     target_aspect_ratio = target_size[0] / target_size[1]
 
     if img_aspect_ratio > target_aspect_ratio:
-        Upload_height = target_size[1]
-        Upload_width = int(Upload_height * img_aspect_ratio)
+        New_height = target_size[1]
+        New_width = int(New_height * img_aspect_ratio)
     else:
-        Upload_width = target_size[0]
-        Upload_height = int(Upload_width / img_aspect_ratio)
+        New_width = target_size[0]
+        New_height = int(New_width / img_aspect_ratio)
 
-    resized_img = img.resize((Upload_width, Upload_height), Image.LANCZOS)
+    resized_img = img.resize((New_width, New_height), Image.LANCZOS)
 
-    Upload_img = Image.Upload('RGBA', target_size, (0, 0, 0, 0))
-    paste_x = (target_size[0] - Upload_width) // 2
-    paste_y = (target_size[1] - Upload_height) // 2
-    Upload_img.paste(resized_img, (paste_x, paste_y), resized_img)
+    New_img = Image.New('RGBA', target_size, (0, 0, 0, 0))
+    paste_x = (target_size[0] - New_width) // 2
+    paste_y = (target_size[1] - New_height) // 2
+    New_img.paste(resized_img, (paste_x, paste_y), resized_img)
 
-    return Upload_img
+    return New_img
 
 
 def add_background(foreground, background_color, target_size):
-    background = Image.Upload('RGB', target_size, color=background_color)
+    background = Image.New('RGB', target_size, color=background_color)
     background.paste(foreground, (0, 0), foreground)
     return background
 
@@ -180,7 +180,7 @@ if __name__ == "__main__":
 
     with col1:
         st.header("Select Mode")
-        search_option = st.radio("", ('New', 'No_Photo?'), horizontal=True, key=st.session_state['text_box'])
+        search_option = st.radio("", ('New', 'Existing'), horizontal=True, key=st.session_state['text_box'])
         output_image_path = 'output.jpg'
 
         if search_option == 'New':
@@ -195,7 +195,7 @@ if __name__ == "__main__":
             st.subheader("Choose Background Color")
             bg_color = st.color_picker("Choose background color", "#ffffff", key=st.session_state['color_wheel'])
 
-        elif search_option == 'No_Photo?':
+        elif search_option == 'Existing':
             image = st.selectbox("**select input image:**", image_files)
             bg_color = st.selectbox('**select image:**', back_files)
 
