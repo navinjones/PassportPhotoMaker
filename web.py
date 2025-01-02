@@ -156,6 +156,64 @@ def load_images(image_directory):
 if __name__ == "__main__":
     st.set_page_config(layout="wide")
 
+    # Inject custom CSS and JavaScript for the popup
+    st.markdown("""
+        <style>
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            text-align: center;
+            position: relative;
+        }
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+        }
+        </style>
+        <script>
+        function closePopup() {
+            var popup = document.getElementById("popup-overlay");
+            popup.style.display = "none";
+        }
+        </script>
+        <div id="popup-overlay" class="popup-overlay">
+            <div class="popup-content">
+                <span class="popup-close" onclick="closePopup()">X</span>
+                <h2>Welcome to Passport Photo Maker</h2>
+                <p>
+                    This tool helps you create passport-sized photos with customized backgrounds. 
+                    Follow these steps to get started:
+                </p>
+                <ul>
+                    <li>Upload an image or select from preloaded options.</li>
+                    <li>Choose your desired background color or image.</li>
+                    <li>Click "Submit" to process the photo.</li>
+                </ul>
+                <p>Close this popup to start using the application.</p>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # Rest of your application code...
     st.markdown("<h1 style='text-align: center;'>Passport Photo Maker</h1>", unsafe_allow_html=True)
 
     if 'text_input_key' not in st.session_state:
