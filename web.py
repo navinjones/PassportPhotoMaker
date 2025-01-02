@@ -193,7 +193,7 @@ if __name__ == "__main__":
                 key=st.session_state['text_input_key']
             )
             st.subheader("select background color")
-            bg_color = st.color_picker("Choose background color", "#ffffff", key=st.session_state['color_wheel'])
+            bg_color = st.color_picker("", "#ffffff", key=st.session_state['color_wheel'])
 
         elif search_option == 'Dont_have_photo_to_try?':
             image = st.selectbox("**select input image:**", image_files)
