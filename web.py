@@ -65,24 +65,24 @@ def resize_and_center_image(img, target_size):
     target_aspect_ratio = target_size[0] / target_size[1]
 
     if img_aspect_ratio > target_aspect_ratio:
-        Upload Your Photo_height = target_size[1]
-        Upload Your Photo_width = int(Upload Your Photo_height * img_aspect_ratio)
+        Upload_Your_Photo_height = target_size[1]
+        Upload_Your_Photo_width = int(Upload_Your_Photo_height * img_aspect_ratio)
     else:
-        Upload Your Photo_width = target_size[0]
-        Upload Your Photo_height = int(Upload Your Photo_width / img_aspect_ratio)
+        Upload_Your_Photo_width = target_size[0]
+        Upload_Your_Photo_height = int(Upload_Your_Photo_width / img_aspect_ratio)
 
-    resized_img = img.resize((Upload Your Photo_width, Upload Your Photo_height), Image.LANCZOS)
+    resized_img = img.resize((Upload_Your_Photo_width, Upload_Your_Photo_height), Image.LANCZOS)
 
-    Upload Your Photo_img = Image.Upload Your Photo('RGBA', target_size, (0, 0, 0, 0))
-    paste_x = (target_size[0] - Upload Your Photo_width) // 2
-    paste_y = (target_size[1] - Upload Your Photo_height) // 2
-    Upload Your Photo_img.paste(resized_img, (paste_x, paste_y), resized_img)
+    Upload_Your_Photo_img = Image.Upload_Your_Photo('RGBA', target_size, (0, 0, 0, 0))
+    paste_x = (target_size[0] - Upload_Your_Photo_width) // 2
+    paste_y = (target_size[1] - Upload_Your_Photo_height) // 2
+    Upload_Your_Photo_img.paste(resized_img, (paste_x, paste_y), resized_img)
 
-    return Upload Your Photo_img
+    return Upload_Your_Photo_img
 
 
 def add_background(foreground, background_color, target_size):
-    background = Image.Upload Your Photo('RGB', target_size, color=background_color)
+    background = Image.Upload_Your_Photo('RGB', target_size, color=background_color)
     background.paste(foreground, (0, 0), foreground)
     return background
 
@@ -180,10 +180,10 @@ if __name__ == "__main__":
 
     with col1:
         st.header("Select Mode")
-        search_option = st.radio("", ('Upload Your Photo', 'Don't have photos to try?'), horizontal=True, key=st.session_state['text_box'])
+        search_option = st.radio("", ('Upload_Your_Photo', 'Dont_have_photo_to_try?'), horizontal=True, key=st.session_state['text_box'])
         output_image_path = 'output.jpg'
 
-        if search_option == 'Upload Your Photo':
+        if search_option == 'Upload_Your_Photo':
             st.subheader("select input image")
             image = st.file_uploader(
                 "Input image",
@@ -195,7 +195,7 @@ if __name__ == "__main__":
             st.subheader("select background color")
             bg_color = st.color_picker("Choose background color", "#ffffff", key=st.session_state['color_wheel'])
 
-        elif search_option == 'Don't have photos to try?':
+        elif search_option == 'Dont_have_photo_to_try?':
             image = st.selectbox("**select input image:**", image_files)
             bg_color = st.selectbox('**select image:**', back_files)
 
