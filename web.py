@@ -180,10 +180,10 @@ if __name__ == "__main__":
 
     with col1:
         st.header("Select Mode")
-        search_option = st.radio("", ('Upload', 'No_Photo?'), horizontal=True, key=st.session_state['text_box'])
+        search_option = st.radio("", ('New', 'No_Photo?'), horizontal=True, key=st.session_state['text_box'])
         output_image_path = 'output.jpg'
 
-        if search_option == 'Upload':
+        if search_option == 'New':
             st.subheader("Select Input Image")
             image = st.file_uploader(
                 "Input image",
