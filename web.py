@@ -73,12 +73,13 @@ def resize_and_center_image(img, target_size):
 
     resized_img = img.resize((new_width, new_height), Image.LANCZOS)
 
-    new_img = Image.new('RGBA', target_size, (0, 0, 0, 0))
+    new_img = Image.new('RGBA', target_size, (0, 0, 0, 0))  # Corrected
     paste_x = (target_size[0] - new_width) // 2
     paste_y = (target_size[1] - new_height) // 2
     new_img.paste(resized_img, (paste_x, paste_y), resized_img)
 
     return new_img
+
 
 
 def add_background(foreground, background_color, target_size):
