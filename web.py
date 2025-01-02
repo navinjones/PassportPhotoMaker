@@ -65,20 +65,20 @@ def resize_and_center_image(img, target_size):
     target_aspect_ratio = target_size[0] / target_size[1]
 
     if img_aspect_ratio > target_aspect_ratio:
-        New_height = target_size[1]
-        New_width = int(New_height * img_aspect_ratio)
+        new_height = target_size[1]
+        new_width = int(new_height * img_aspect_ratio)
     else:
-        New_width = target_size[0]
-        New_height = int(New_width / img_aspect_ratio)
+        new_width = target_size[0]
+        new_height = int(new_width / img_aspect_ratio)
 
-    resized_img = img.resize((New_width, New_height), Image.LANCZOS)
+    resized_img = img.resize((new_width, new_height), Image.LANCZOS)
 
-    New_img = Image.New('RGBA', target_size, (0, 0, 0, 0))
-    paste_x = (target_size[0] - New_width) // 2
-    paste_y = (target_size[1] - New_height) // 2
-    New_img.paste(resized_img, (paste_x, paste_y), resized_img)
+    new_img = Image.new('RGBA', target_size, (0, 0, 0, 0))
+    paste_x = (target_size[0] - new_width) // 2
+    paste_y = (target_size[1] - new_height) // 2
+    new_img.paste(resized_img, (paste_x, paste_y), resized_img)
 
-    return New_img
+    return new_img
 
 
 def add_background(foreground, background_color, target_size):
