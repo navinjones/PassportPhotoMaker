@@ -156,7 +156,7 @@ def load_images(image_directory):
 if __name__ == "__main__":
     st.set_page_config(layout="wide")
 
-    st.markdown("<h1 style='text-align: center;'>AI Passport Photo Maker</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>Passport Photo Maker</h1>", unsafe_allow_html=True)
 
     if 'text_input_key' not in st.session_state:
         st.session_state['text_input_key'] = 'A'
