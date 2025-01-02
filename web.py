@@ -65,24 +65,24 @@ def resize_and_center_image(img, target_size):
     target_aspect_ratio = target_size[0] / target_size[1]
 
     if img_aspect_ratio > target_aspect_ratio:
-        new_height = target_size[1]
-        new_width = int(new_height * img_aspect_ratio)
+        Upload Your Photo_height = target_size[1]
+        Upload Your Photo_width = int(Upload Your Photo_height * img_aspect_ratio)
     else:
-        new_width = target_size[0]
-        new_height = int(new_width / img_aspect_ratio)
+        Upload Your Photo_width = target_size[0]
+        Upload Your Photo_height = int(Upload Your Photo_width / img_aspect_ratio)
 
-    resized_img = img.resize((new_width, new_height), Image.LANCZOS)
+    resized_img = img.resize((Upload Your Photo_width, Upload Your Photo_height), Image.LANCZOS)
 
-    new_img = Image.new('RGBA', target_size, (0, 0, 0, 0))
-    paste_x = (target_size[0] - new_width) // 2
-    paste_y = (target_size[1] - new_height) // 2
-    new_img.paste(resized_img, (paste_x, paste_y), resized_img)
+    Upload Your Photo_img = Image.Upload Your Photo('RGBA', target_size, (0, 0, 0, 0))
+    paste_x = (target_size[0] - Upload Your Photo_width) // 2
+    paste_y = (target_size[1] - Upload Your Photo_height) // 2
+    Upload Your Photo_img.paste(resized_img, (paste_x, paste_y), resized_img)
 
-    return new_img
+    return Upload Your Photo_img
 
 
 def add_background(foreground, background_color, target_size):
-    background = Image.new('RGB', target_size, color=background_color)
+    background = Image.Upload Your Photo('RGB', target_size, color=background_color)
     background.paste(foreground, (0, 0), foreground)
     return background
 
@@ -156,7 +156,7 @@ def load_images(image_directory):
 if __name__ == "__main__":
     st.set_page_config(layout="wide")
 
-    st.markdown("<h1 style='text-align: center;'>Passport size filter</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>Passport Photo Maker</h1>", unsafe_allow_html=True)
 
     if 'text_input_key' not in st.session_state:
         st.session_state['text_input_key'] = 'A'
@@ -180,10 +180,10 @@ if __name__ == "__main__":
 
     with col1:
         st.header("Select Mode")
-        search_option = st.radio("", ('new', 'existing'), horizontal=True, key=st.session_state['text_box'])
+        search_option = st.radio("", ('Upload Your Photo', 'Don't have photos to try?'), horizontal=True, key=st.session_state['text_box'])
         output_image_path = 'output.jpg'
 
-        if search_option == 'new':
+        if search_option == 'Upload Your Photo':
             st.subheader("select input image")
             image = st.file_uploader(
                 "Input image",
@@ -195,7 +195,7 @@ if __name__ == "__main__":
             st.subheader("select background color")
             bg_color = st.color_picker("Choose background color", "#ffffff", key=st.session_state['color_wheel'])
 
-        elif search_option == 'existing':
+        elif search_option == 'Don't have photos to try?':
             image = st.selectbox("**select input image:**", image_files)
             bg_color = st.selectbox('**select image:**', back_files)
 
